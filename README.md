@@ -57,3 +57,9 @@ make start
 make composer-install
 make load-fixtures
 ```
+
+Для тестового запуска можно воспользоваться следующим curl запросом
+
+```
+docker exec -it nevatrip_test-api-1 curl -X POST http://localhost:8080/api/order -H "Content-Type: application/json" -d '{"event_id": 1, "user_id": 2, "tickets": {"adult": 2, "kid": 8}}'
+```
