@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\Enum\TicketTypeEnum;
 use App\Repository\OrderRepository;
-use App\Repository\TicketRepository;
-use App\Repository\TicketTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
