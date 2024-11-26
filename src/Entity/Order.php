@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Enum\TicketTypeEnum;
 use App\Repository\OrderRepository;
+use App\Repository\TicketRepository;
+use App\Repository\TicketTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -85,10 +87,11 @@ class Order
         return
             $this->tickets->filter(fn(Ticket $ticket) => $ticket->getTicketType()->getName() === TicketTypeEnum::ADULT)->count();
     }
+
     public function getAdultTicketPrice(): int
     {
         $tickets = $this->tickets->filter(fn(Ticket $ticket) => $ticket->getTicketType()->getName() === TicketTypeEnum::ADULT);
-        if ($tickets) {
+        if ($tickets->count()) {
             return $tickets->first()->getPrice();
         }
 
@@ -98,14 +101,13 @@ class Order
     public function getKidTicketQuantity(): int
     {
         return
-            $this->tickets->filter(fn(Ticket $ticket) => $ticket->getTicketType()->getName() === TicketTypeEnum::KID)->count()
-        ;
+            $this->tickets->filter(fn(Ticket $ticket) => $ticket->getTicketType()->getName() === TicketTypeEnum::KID)->count();
     }
 
     public function getKidTicketPrice(): int
     {
         $tickets = $this->tickets->filter(fn(Ticket $ticket) => $ticket->getTicketType()->getName() === TicketTypeEnum::KID);
-        if ($tickets) {
+        if ($tickets->count()) {
             return $tickets->first()->getPrice();
         }
 
