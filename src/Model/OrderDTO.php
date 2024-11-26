@@ -26,6 +26,9 @@ class OrderDTO
         foreach ($tickets as $type => $count) {
             TicketTypeEnum::tryFrom($type) ?? throw new \InvalidArgumentException("Invalid ticket type: $type");
             $this->tickets[$type] = $count;
+            if ($count <= 0) {
+                throw new \InvalidArgumentException("Invalid ticket count");
+            }
         }
     }
 

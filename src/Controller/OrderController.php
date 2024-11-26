@@ -23,6 +23,6 @@ class OrderController extends AbstractController
             return $this->json($e->getMessage());
         }
 
-        return $this->json('Ok');
+        return $this->json('Order approve');
     }
 }
